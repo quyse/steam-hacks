@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# remove that after fixing script
+echo "FIX SCRIPT FIRST"
+exit 1
+
+export CONTAINER_HOME=/home/user/container/home # FIXME
+
+# TODO: add additional volumes
+
+sudo docker run -it --rm \
+	-h $(hostname) -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/runner/.Xauthority -v /dev/dri:/dev/dri \
+	-v /run/user/${UID}/pulse:/run/user/${UID}/pulse \
+	-v $CONTAINER_HOME:/home/runner \
+	steam_hacks bash
